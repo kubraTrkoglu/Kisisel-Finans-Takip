@@ -1,7 +1,6 @@
 # 📊 Kişisel Finans ve Gider Takip Sistemi
 
 Kişisel gelir ve giderlerinizi kolayca takip edebileceğiniz, net bakiyenizi hesaplayan ve harcamalarınızı kategorize eden dinamik bir web uygulamasıdır. 
-
 Bu proje, MVC mimarisi kullanılarak geliştirilmiş olup, veritabanı işlemleri için mikro-ORM aracı olan Dapper tercih edilerek yüksek performans hedeflenmiştir.
 
 ## 🚀 Kullanılan Teknolojiler
