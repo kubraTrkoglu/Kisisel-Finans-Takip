@@ -1,0 +1,71 @@
+﻿@model List<KisiselFinansTakip.Models.Islem>
+
+@{
+    ViewData["Title"] = "Finans Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">📊 Finansal Durum Özeti</h2>
+    <a asp-action="Ekle" class="btn btn-success mb-3">+ Yeni İşlem Ekle</a>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Net Bakiye</h5>
+                    <h3>₺ @ViewBag.NetBakiye.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Toplam Gelir</h5>
+                    <h3>₺ @ViewBag.ToplamGelir.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Toplam Gider</h5>
+                    <h3>₺ @ViewBag.ToplamGider.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Son İşlemler</h4>
+    <div class="table-responsive shadow-sm">
+        <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tarih</th>
+                    <th>Kategori</th>
+                    <th>Açıklama</th>
+                    <th>Tutar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td><span class="badge bg-secondary">@item.KategoriAdi</span></td>
+                        <td>@item.Aciklama</td>
+                        <td>
+                            @if (item.Tip == "Gelir")
+                            {
+                                <span class="text-success fw-bold">+ ₺ @item.Miktar.ToString("N2")</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger fw-bold">- ₺ @item.Miktar.ToString("N2")</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

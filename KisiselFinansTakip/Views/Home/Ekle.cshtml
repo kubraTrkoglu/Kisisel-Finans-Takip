@@ -1,0 +1,41 @@
+﻿@model KisiselFinansTakip.Models.Islem
+
+@{
+    ViewData["Title"] = "Yeni İşlem Ekle";
+}
+
+<div class="container mt-4">
+    <h2>➕ Yeni Gelir / Gider Ekle</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Ekle" method="post" class="shadow p-4 rounded bg-light">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Kategori</label>
+                    <select asp-for="Kategori_Id" class="form-select" required>
+                        <option value="">-- Lütfen Kategori Seçin --</option>
+                        @foreach (var kat in ViewBag.Kategoriler)
+                        {
+                            <option value="@kat.Id">@kat.Ad (@kat.Tip)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Miktar (₺)</label>
+                    <input asp-for="Miktar" type="number" step="0.01" class="form-control" placeholder="Örn: 1500.50" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Açıklama (İsteğe Bağlı)</label>
+                    <input asp-for="Aciklama" type="text" class="form-control" placeholder="Bu harcama/gelir ne içindi?" maxlength="200" />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">💾 Kaydet</button>
+                <a asp-action="Index" class="btn btn-secondary w-100 mt-2">İptal ve Geri Dön</a>
+            </form>
+        </div>
+    </div>
+</div>
